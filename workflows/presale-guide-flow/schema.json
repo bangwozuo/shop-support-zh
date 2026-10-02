@@ -1,0 +1,66 @@
+{
+  "workflow_id": "de_ecom_02_wf01",
+  "name": "售前智能导购",
+  "type": "composite",
+  "skill_refs": ["de_ecom_02_sk01", "de_ecom_02_sk02"],
+  "input": {
+    "type": "object",
+    "required": ["kb", "buyers"],
+    "properties": {
+      "kb": {
+        "type": "array",
+        "description": "店铺知识库条目（同 product-kb-qa 格式）",
+        "items": {"type": "object"}
+      },
+      "buyers": {
+        "type": "array",
+        "description": "买家咨询数组，每项含 买家/问题/订单金额(可选)",
+        "items": {
+          "type": "object",
+          "properties": {
+            "买家": {"type": "string"},
+            "问题": {"type": "string"},
+            "订单金额": {"type": "number"}
+          }
+        }
+      },
+      "min_score": {"type": "number", "description": "知识命中阈值，默认 0.35", "default": 0.35}
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": ["summary", "steps", "deliverable"],
+    "properties": {
+      "summary": {
+        "type": "object",
+        "description": "咨询总数 / 知识命中 / 知识缺口 / 命中率 / 议价条数 / 意图分布"
+      },
+      "steps": {
+        "type": "array",
+        "description": "分步结果，每步含 步骤/技能/状态/输出/失败处理",
+        "items": {"type": "object"}
+      },
+      "deliverable": {
+        "type": "string",
+        "description": "端到端交付物：导购台账.xlsx + 售前导购报告.md"
+      }
+    },
+    "x-rendered-from": "workflow:presale-guide"
+  },
+  "steps": [
+    {"step": 1, "skill": "presale-guide-flow", "action": "意图识别", "on_fail": "标「其他」继续"},
+    {"step": 2, "skill": "product-kb-qa", "action": "知识库问答", "on_fail": "记缺口，不编答案"},
+    {"step": 3, "skill": "price-negotiation-script", "action": "议价判定", "on_fail": "缺金额→转人工定档"},
+    {"step": 4, "skill": "presale-guide-flow", "action": "汇总交付", "on_fail": "保留已完成步骤并标注"}
+  ],
+  "scripts": {
+    "run": "scripts/run_flow.py",
+    "usage": "python3 scripts/run_flow.py --input input.json --outdir out"
+  },
+  "artifacts": ["out/售前导购台账.xlsx", "out/售前导购报告.md", "out/presale_flow.json"],
+  "constraints": {
+    "ai_label_required": true,
+    "human_review_required": true,
+    "external_api_required": false
+  }
+}

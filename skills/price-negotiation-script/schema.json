@@ -1,0 +1,61 @@
+{
+  "skill_id": "de_ecom_02_sk02",
+  "name": "议价话术",
+  "type": "atomic",
+  "input": {
+    "type": "object",
+    "required": ["question"],
+    "properties": {
+      "question": {
+        "type": "string",
+        "description": "买家议价消息原话"
+      },
+      "context": {
+        "type": "string",
+        "description": "背景：商品/标价/成本/最低毛利率/当前活动/竞品报价/买家历史（可选）"
+      },
+      "persona": {
+        "type": "string",
+        "description": "店铺可承诺范围，如「一线最多让价 5%、赠品 1 件」（可选）"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": ["reply", "negotiation", "escalate"],
+    "properties": {
+      "reply": {
+        "type": "string",
+        "description": "按五段结构写成、可直接发送的话术（≤160 字）"
+      },
+      "negotiation": {
+        "type": "object",
+        "description": "议价分析：类型/诉求/价值锚点/让步档位/底线校核",
+        "properties": {
+          "议价类型": {"type": "string", "enum": ["询价型", "比价型", "压价型", "威胁型", "价保型", "批量复购型"]},
+          "买家诉求": {"type": "string"},
+          "价值锚点": {"type": "string"},
+          "让步档位": {"type": "string"},
+          "底线校核": {"type": "string"}
+        }
+      },
+      "escalate": {
+        "type": "object",
+        "description": "是否升级及原因；超出授权让价幅度的必须升级",
+        "properties": {
+          "是否升级": {"type": "string", "enum": ["否", "转二线审批", "转店长审批"]},
+          "触发原因": {"type": "string"},
+          "建议": {"type": "string"}
+        }
+      }
+    },
+    "x-rendered-from": "capability:reply"
+  },
+  "constraints": {
+    "max_input_length": 5000,
+    "forbidden_words": ["最好", "第一", "100%"],
+    "ai_label_required": true,
+    "human_review_required": true,
+    "external_api_required": false
+  }
+}

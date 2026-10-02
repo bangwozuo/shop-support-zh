@@ -1,0 +1,79 @@
+{
+  "skill_id": "de_ecom_02_sk06",
+  "name": "转人工分流",
+  "type": "atomic",
+  "input": {
+    "type": "object",
+    "required": ["conversations"],
+    "properties": {
+      "conversations": {
+        "type": "array",
+        "description": "会话数组，每项含 会话ID/买家/订单金额(可选)/消息[]（消息含 角色/内容）",
+        "items": {
+          "type": "object",
+          "properties": {
+            "会话ID": {"type": "string"},
+            "买家": {"type": "string"},
+            "订单金额": {"type": "number"},
+            "消息": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "角色": {"type": "string", "enum": ["买家", "客服", "AI"]},
+                  "内容": {"type": "string"}
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": ["summary", "routes", "signals"],
+    "properties": {
+      "summary": {
+        "type": "object",
+        "description": "会话总数 / 一线自助 / 二线人工 / 三线（主管）/ 人工介入占比 / 触发升级信号数"
+      },
+      "routes": {
+        "type": "array",
+        "description": "分流台账（逐会话路由结果）",
+        "items": {
+          "type": "object",
+          "properties": {
+            "会话ID": {"type": "string"},
+            "买家": {"type": "string"},
+            "主分类": {"type": "string", "enum": ["价格", "退换货", "发票", "尺码不合适", "质量", "物流", "其他"]},
+            "情绪等级": {"type": "string", "enum": ["L0 中性", "L1 轻微不满", "L2 明显不满", "L3 愤怒", "L4 极端/威胁"]},
+            "升级信号": {"type": "string"},
+            "分流层级": {"type": "string", "enum": ["一线自助", "二线人工", "三线（主管）"]},
+            "接管时限": {"type": "string"},
+            "方案时效": {"type": "string"},
+            "交接摘要": {"type": "string"}
+          }
+        }
+      },
+      "signals": {
+        "type": "array",
+        "description": "升级信号明细（触发三线主管介入的会话）",
+        "items": {"type": "object"}
+      }
+    },
+    "x-rendered-from": "capability:classify"
+  },
+  "scripts": {
+    "route": "scripts/handoff_route.py",
+    "usage": "python3 scripts/handoff_route.py --input input.json --outdir out"
+  },
+  "artifacts": ["out/分流台账.xlsx", "out/分流层级分布.png", "out/handoff.json"],
+  "constraints": {
+    "max_input_length": 20000,
+    "forbidden_words": ["最好", "第一", "100%"],
+    "ai_label_required": true,
+    "human_review_required": true,
+    "external_api_required": false
+  }
+}

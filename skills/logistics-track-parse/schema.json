@@ -1,0 +1,81 @@
+{
+  "skill_id": "de_ecom_02_sk03",
+  "name": "物流跟踪解读",
+  "type": "atomic",
+  "input": {
+    "type": "object",
+    "required": ["shipments"],
+    "properties": {
+      "shipments": {
+        "type": "array",
+        "description": "运单数组，每项含 运单号/承运商/订单号/事件[]（事件含 时间/描述/地点）",
+        "items": {
+          "type": "object",
+          "properties": {
+            "运单号": {"type": "string"},
+            "承运商": {"type": "string"},
+            "订单号": {"type": "string"},
+            "事件": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "时间": {"type": "string"},
+                  "描述": {"type": "string"},
+                  "地点": {"type": "string"}
+                }
+              }
+            }
+          }
+        }
+      },
+      "now": {"type": "string", "description": "基准时间 YYYY-MM-DD HH:MM，用于计算停滞时长"},
+      "stale_hours": {"type": "number", "description": "停滞告警阈值，默认 72", "default": 72}
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": ["summary", "shipments", "anomalies"],
+    "properties": {
+      "summary": {
+        "type": "object",
+        "description": "运单总数 / 正常件 / 异常件 / 异常率 / 停滞阈值小时 / 基准时间"
+      },
+      "shipments": {
+        "type": "array",
+        "description": "逐单解读结果",
+        "items": {
+          "type": "object",
+          "properties": {
+            "运单号": {"type": "string"},
+            "承运商": {"type": "string"},
+            "当前状态": {"type": "string", "enum": ["待揽收", "已揽收", "运输中", "派件中", "已签收", "异常件", "无轨迹"]},
+            "最后更新": {"type": "string"},
+            "停滞小时": {"type": "number"},
+            "是否异常": {"type": "string"},
+            "异常类型": {"type": "string"},
+            "话术建议": {"type": "string"}
+          }
+        }
+      },
+      "anomalies": {
+        "type": "array",
+        "description": "异常件台账（需主动介入的运单）",
+        "items": {"type": "object"}
+      }
+    },
+    "x-rendered-from": "capability:parse"
+  },
+  "scripts": {
+    "parse": "scripts/logistics_parse.py",
+    "usage": "python3 scripts/logistics_parse.py --input input.json --outdir out"
+  },
+  "artifacts": ["out/物流轨迹解读.xlsx", "out/物流状态分布.png", "out/logistics.json"],
+  "constraints": {
+    "max_input_length": 20000,
+    "forbidden_words": ["最好", "第一", "100%"],
+    "ai_label_required": true,
+    "human_review_required": true,
+    "external_api_required": false
+  }
+}

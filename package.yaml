@@ -1,0 +1,51 @@
+name: 店铺客服官
+repo: bangwozuo/shop-support-zh
+legacy_name: 客服专员·小服
+version: 0.2.0
+asset_type: prompt-only
+stage: P0
+complexity: M
+group: 电商小卖家
+runtime_dependencies: none
+api_key_required: false
+demand_ids:
+  - D07
+  - D08
+
+workflows:
+  - name: 售前智能导购
+    id: de_ecom_02_wf01
+  - name: 订单/物流自动查询
+    id: de_ecom_02_wf02
+  - name: 售后工单分流与安抚
+    id: de_ecom_02_wf03
+  - name: 夜间值守+次日汇总
+    id: de_ecom_02_wf04
+  - name: 差评预警联动
+    id: de_ecom_02_wf05
+
+skills:
+  - id: product-kb-qa
+    name: 商品知识库问答
+    family: 
+  - id: price-negotiation-script
+    name: 议价话术
+    family: 
+  - id: logistics-track-parse
+    name: 物流跟踪解读
+    family: 
+  - id: return-policy-respond
+    name: 退换货政策应答
+    family: 
+  - id: emotion-detect-appease
+    name: 情绪识别安抚
+    family: 
+  - id: human-handoff-route
+    name: 转人工分流
+    family: 
+
+compliance:
+  ai_label_required: true
+  human_review_required: true
+  forbidden_words_check: true
+  official_api_only: true

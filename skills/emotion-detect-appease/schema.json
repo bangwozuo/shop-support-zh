@@ -1,0 +1,59 @@
+{
+  "skill_id": "de_ecom_02_sk05",
+  "name": "情绪识别安抚",
+  "type": "atomic",
+  "input": {
+    "type": "object",
+    "required": ["question"],
+    "properties": {
+      "question": {
+        "type": "string",
+        "description": "买家原话（用户消息）"
+      },
+      "context": {
+        "type": "string",
+        "description": "背景信息：订单号、商品、历史沟通、已承诺事项（可选）"
+      },
+      "persona": {
+        "type": "string",
+        "description": "品牌人设与可承诺范围（可选，缺省「亲切、专业、不卑不亢」）"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": ["reply", "emotion", "escalate"],
+    "properties": {
+      "reply": {
+        "type": "string",
+        "description": "按「共情→诊断→方案→行动」四段结构写成、可直接发送的回复（≤150 字）"
+      },
+      "emotion": {
+        "type": "object",
+        "description": "情绪等级（L0–L4）+ 判定依据 + 买家核心诉求",
+        "properties": {
+          "等级": {"type": "string", "enum": ["L0 中性", "L1 轻微不满", "L2 明显不满", "L3 愤怒", "L4 极端/威胁"]},
+          "判定依据": {"type": "string"},
+          "核心诉求": {"type": "string"}
+        }
+      },
+      "escalate": {
+        "type": "object",
+        "description": "是否升级及原因；命中投诉/差评/12315/平台介入或涉及金额赔付的必须升级",
+        "properties": {
+          "是否升级": {"type": "string", "enum": ["否", "转二线人工", "转三线主管"]},
+          "触发原因": {"type": "string"},
+          "接管时限": {"type": "string"}
+        }
+      }
+    },
+    "x-rendered-from": "capability:reply"
+  },
+  "constraints": {
+    "max_input_length": 5000,
+    "forbidden_words": ["最好", "第一", "100%"],
+    "ai_label_required": true,
+    "human_review_required": true,
+    "external_api_required": false
+  }
+}

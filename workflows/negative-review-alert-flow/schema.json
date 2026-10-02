@@ -1,0 +1,70 @@
+{
+  "workflow_id": "de_ecom_02_wf05",
+  "name": "差评预警联动",
+  "type": "composite",
+  "skill_refs": [
+    "de_ecom_02_sk05",
+    "de_ecom_02_sk06"
+  ],
+  "input": {
+    "type": "object",
+    "required": [
+      "reviews"
+    ],
+    "properties": {
+      "reviews": {
+        "type": "array",
+        "description": "评价数组，每项含 评价ID/平台/星级/内容/订单金额/评价时间/回复状态/订单号",
+        "items": {
+          "type": "object",
+          "properties": {
+            "评价ID": { "type": "string" },
+            "平台": { "type": "string" },
+            "星级": { "type": ["number", "null"] },
+            "内容": { "type": "string" },
+            "订单金额": { "type": ["number", "null"] },
+            "评价时间": { "type": "string" },
+            "回复状态": { "type": "string" },
+            "订单号": { "type": "string" }
+          }
+        }
+      },
+      "shop": { "type": "string", "description": "店铺名（可选）" },
+      "now": { "type": "string", "description": "基准时间 YYYY-MM-DD HH:MM（可选）" }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "summary",
+      "steps",
+      "deliverable"
+    ],
+    "properties": {
+      "summary": {
+        "type": "object",
+        "description": "评价总数/差评数/S1·S2·S3 计数/根因分布/未回复差评"
+      },
+      "steps": {
+        "type": "array",
+        "description": "分步结果（含失败处理）"
+      },
+      "deliverable": {
+        "type": "string",
+        "description": "差评预警台账.xlsx + 差评预警推送.md"
+      }
+    }
+  },
+  "scripts": [
+    "scripts/run_flow.py"
+  ],
+  "artifacts": [
+    "out/差评预警台账.xlsx",
+    "out/差评预警推送.md",
+    "out/negative_review_alert.json"
+  ],
+  "constraints": {
+    "ai_label_required": true,
+    "human_review_required": true
+  }
+}

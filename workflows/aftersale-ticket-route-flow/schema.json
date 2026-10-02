@@ -1,0 +1,75 @@
+{
+  "workflow_id": "de_ecom_02_wf03",
+  "name": "售后工单分流与安抚",
+  "type": "composite",
+  "skill_refs": [
+    "de_ecom_02_sk05",
+    "de_ecom_02_sk06"
+  ],
+  "input": {
+    "type": "object",
+    "required": [
+      "conversations"
+    ],
+    "properties": {
+      "conversations": {
+        "type": "array",
+        "description": "会话数组，每项含 会话ID/买家/订单金额/消息[]（角色+内容）",
+        "items": {
+          "type": "object",
+          "properties": {
+            "会话ID": { "type": "string" },
+            "买家": { "type": "string" },
+            "订单金额": { "type": ["number", "null"] },
+            "消息": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "角色": { "type": "string", "enum": ["买家", "客服", "AI"] },
+                  "内容": { "type": "string" }
+                }
+              }
+            }
+          }
+        }
+      },
+      "shop": { "type": "string", "description": "店铺名（可选）" },
+      "now": { "type": "string", "description": "基准时间 YYYY-MM-DD HH:MM（可选）" }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "summary",
+      "steps",
+      "deliverable"
+    ],
+    "properties": {
+      "summary": {
+        "type": "object",
+        "description": "会话总数/升级转主管/可自动安抚/内容缺失/情绪分布"
+      },
+      "steps": {
+        "type": "array",
+        "description": "分步结果（含失败处理）"
+      },
+      "deliverable": {
+        "type": "string",
+        "description": "售后分流安抚台账.xlsx + 安抚话术清单.md"
+      }
+    }
+  },
+  "scripts": [
+    "scripts/run_flow.py"
+  ],
+  "artifacts": [
+    "out/售后分流安抚台账.xlsx",
+    "out/安抚话术清单.md",
+    "out/aftersale_flow.json"
+  ],
+  "constraints": {
+    "ai_label_required": true,
+    "human_review_required": true
+  }
+}

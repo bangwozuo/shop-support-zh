@@ -1,0 +1,60 @@
+{
+  "skill_id": "de_ecom_02_sk04",
+  "name": "退换货政策应答",
+  "type": "atomic",
+  "input": {
+    "type": "object",
+    "required": ["question"],
+    "properties": {
+      "question": {
+        "type": "string",
+        "description": "买家售后问话原话"
+      },
+      "context": {
+        "type": "string",
+        "description": "背景：平台/订单号/类目/下单签收时间/是否拆封/有无质量问题/运费险（可选）"
+      },
+      "persona": {
+        "type": "string",
+        "description": "店铺售后政策与可承诺范围（可选）"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": ["reply", "policy", "escalate"],
+    "properties": {
+      "reply": {
+        "type": "string",
+        "description": "按四段结构写成、可直接发送的回复（≤180 字）"
+      },
+      "policy": {
+        "type": "object",
+        "description": "政策判定：平台/情形/是否可退换/运费责任/到账时效",
+        "properties": {
+          "平台": {"type": "string"},
+          "情形": {"type": "string"},
+          "是否可退换": {"type": "string"},
+          "运费责任": {"type": "string"},
+          "到账时效": {"type": "string"}
+        }
+      },
+      "escalate": {
+        "type": "object",
+        "description": "是否升级及原因；涉及金额赔付或责任争议的必须升级",
+        "properties": {
+          "是否升级": {"type": "string", "enum": ["否", "转二线售后", "转主管"]},
+          "触发原因": {"type": "string"}
+        }
+      }
+    },
+    "x-rendered-from": "capability:reply"
+  },
+  "constraints": {
+    "max_input_length": 5000,
+    "forbidden_words": ["最好", "第一", "100%"],
+    "ai_label_required": true,
+    "human_review_required": true,
+    "external_api_required": false
+  }
+}
