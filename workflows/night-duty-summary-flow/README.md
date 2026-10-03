@@ -7,6 +7,8 @@
 
 ![真实执行](docs/assets/run-terminal.png)
 
+![演示视频](docs/assets/demo.mp4)
+
 *上图来自真实执行：`python scripts/run_flow.py --demo`，7 条夜间消息一次跑完——知识库命中 6，自助应答率 **85.7%**（目标 ≥60% ✅），待人工 1 / 待晨间主管 1 / FAQ 草稿 1。*
 
 ---

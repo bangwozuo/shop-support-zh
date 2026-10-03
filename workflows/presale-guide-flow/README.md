@@ -7,6 +7,8 @@
 
 ![真实执行](docs/assets/run-terminal.png)
 
+![演示视频](docs/assets/demo.mp4)
+
 *上图来自真实执行：`python scripts/run_flow.py --demo`，6 条买家咨询一次跑完——知识命中 4 / 缺口 2（命中率 66.7%），议价 2 条已配让步档位，产物落盘导购台账 Excel + 报告 MD + JSON。*
 
 ---

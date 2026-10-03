@@ -7,6 +7,8 @@
 
 ![真实执行](docs/assets/run-terminal.png)
 
+![演示视频](docs/assets/demo.mp4)
+
 *上图来自真实执行：`python scripts/handoff_route.py --demo`，10 条会话一次分流——一线自助 5 / 二线人工 2 / 三线主管 3，人工介入占比 50.0%，2 条命中升级信号，产物落盘 Excel + PNG + JSON。*
 
 ---

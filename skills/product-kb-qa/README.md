@@ -7,6 +7,8 @@
 
 ![真实执行](docs/assets/run-terminal.png)
 
+![演示视频](docs/assets/demo.mp4)
+
 *上图来自真实执行：`python scripts/kb_qa.py --demo`，12 个买家问题一次检索——命中 11 / 缺口 1（命中率 91.7%），每条答复标注命中条目 ID，产物落盘 Excel + PNG + JSON。*
 
 ---

@@ -7,6 +7,8 @@
 
 ![真实执行](docs/assets/run-terminal.png)
 
+![演示视频](docs/assets/demo.mp4)
+
 *上图来自真实执行：`python scripts/run_flow.py --demo`，4 个运单一次跑完——正常件 1 / 异常件 3，待主动回复 3，基准时间 2026-09-30 09:00，产物落盘台账 Excel + 回复 MD + JSON。*
 
 ---
