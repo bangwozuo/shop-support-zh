@@ -9,6 +9,12 @@
 
 ---
 
+![演示](docs/demo.mp4)
+
+*上方录屏来自本仓 5 个代表资产的真实执行 / 实跑产物截图（商品知识库问答 → 情绪识别安抚 → 售后工单分流与安抚 → 差评预警联动 → 夜间值守晨报），每帧 4 秒；单资产完整截图见各资产 `docs/assets/run-terminal.png`。*
+
+---
+
 ## 它是谁
 
 面向 **电商小卖家** 的数字员工资产包。
@@ -21,17 +27,24 @@
 | 工作流数 | 5 |
 | 旧名存档 | `客服专员·小服` |
 
+## 数字员工总览
+
+| 字段 | 内容 |
+|------|------|
+| 身份 | 店铺客服官——一人店的 7×24 客服坐席（售前导购 / 物流查询 / 售后安抚 / 夜间值守） |
+| 边界 | 做接待与分流；**不做**退款审批、赔付决策（一律转人工，资金仅出草稿） |
+| KPI | 首响 ≤30 秒 · AI 解决率 ≥70% · 夜间承接率 100% · 转人工率 ≤25% |
+
 ---
 
 ## 资产形态
 
-**纯提示词资产** —— 这是理解本仓库的关键：
+**提示词为主 + 可选确定性脚本** —— 这是理解本仓库的关键：
 
 | 特性 | 说明 |
 |------|------|
 | ✅ 无需 API Key | 一个 Key 都不需要 |
-| ✅ 无需部署 | 没有服务端，没有脚本 |
-| ✅ 无需依赖 | 克隆后用文本编辑器就能看 |
+| ✅ 无需部署 | 纯提示词即用；8 个资产附可选 Python 脚本（产出 Excel/PNG/JSON 台账） |
 | ✅ 平台无关 | 粘贴到任何 AI 工具即可使用 |
 | ✅ 用户自备算力 | 模型来自你自己的订阅 |
 
@@ -104,26 +117,21 @@ shop-support-zh/
 
 ---
 
-## 技能清单（6 个）
+## 资产矩阵（6 技能 + 5 工作流）
 
-| # | 技能 | 能力族 | 复杂度 | 提示词 | 文档 |
-|---|------|--------|--------|--------|------|
-| 1 | 商品知识库问答 | 回复应答 | `M` | [prompt.txt](skills/product-kb-qa/prompt.txt) | [docs](skills/product-kb-qa/docs/) |
-| 2 | 议价话术 | 回复应答 | `S` | [prompt.txt](skills/price-negotiation-script/prompt.txt) | [docs](skills/price-negotiation-script/docs/) |
-| 3 | 物流跟踪解读 | 多语言 | `M` | [prompt.txt](skills/logistics-track-parse/prompt.txt) | [docs](skills/logistics-track-parse/docs/) |
-| 4 | 退换货政策应答 | 回复应答 | `S` | [prompt.txt](skills/return-policy-respond/prompt.txt) | [docs](skills/return-policy-respond/docs/) |
-| 5 | 情绪识别安抚 | 回复应答 | `S` | [prompt.txt](skills/emotion-detect-appease/prompt.txt) | [docs](skills/emotion-detect-appease/docs/) |
-| 6 | 转人工分流 | 摘要提炼 | `S` | [prompt.txt](skills/human-handoff-route/prompt.txt) | [docs](skills/human-handoff-route/docs/) |
-
-## 工作流清单（5 条）
-
-| # | 工作流 | 阶段 | 复杂度 | 触发 | 定义 | 文档 |
-|---|--------|------|--------|------|------|------|
-| 1 | 售前智能导购 | `P0` | `M` | 事件（买家消息） | [SKILL.md](workflows/presale-guide-flow/SKILL.md) | [docs](workflows/presale-guide-flow/docs/) |
-| 2 | 订单/物流自动查询 | `P0` | `M` | 事件 | [SKILL.md](workflows/order-logistics-query-flow/SKILL.md) | [docs](workflows/order-logistics-query-flow/docs/) |
-| 3 | 售后工单分流与安抚 | `P0` | `M` | 事件 | [SKILL.md](workflows/aftersale-ticket-route-flow/SKILL.md) | [docs](workflows/aftersale-ticket-route-flow/docs/) |
-| 4 | 夜间值守+次日汇总 | `P0` | `S` | 定时（22:00-8:00 + 8:30 晨报） | [SKILL.md](workflows/night-duty-summary-flow/SKILL.md) | [docs](workflows/night-duty-summary-flow/docs/) |
-| 5 | 差评预警联动 | `P1` | `S` | 事件（新评价） | [SKILL.md](workflows/negative-review-alert-flow/SKILL.md) | [docs](workflows/negative-review-alert-flow/docs/) |
+| 资产 | 一句话 | 类型 | README |
+|------|--------|------|--------|
+| 商品知识库问答 | 知识库内作答、条目 ID 可回溯，缺口不硬答（实跑 12 问命中 91.7%） | T1 原子技能+脚本 | [README](skills/product-kb-qa/README.md) |
+| 转人工分流 | 判定每通会话「谁处理、多久内」，升级信号命中即升三线（10 通一次分流） | T1 原子技能+脚本 | [README](skills/human-handoff-route/README.md) |
+| 物流跟踪解读 | 轨迹翻译成「当前状态 + 下一步」，异常件主动介入（6 单异常率 50%） | T1 原子技能+脚本 | [README](skills/logistics-track-parse/README.md) |
+| 情绪识别安抚 | 先定级 L0–L4，再按四段结构给能降温的回复 | T2 原子技能 | [README](skills/emotion-detect-appease/README.md) |
+| 议价话术 | 价值锚定 + 授权内让步，不击穿底线价留住买家 | T2 原子技能 | [README](skills/price-negotiation-script/README.md) |
+| 退换货政策应答 | 先判时限与例外，再定运费责任与到账口径 | T2 原子技能 | [README](skills/return-policy-respond/README.md) |
+| 售前智能导购 | 意图分流 → 知识库作答 → 议价档位匹配的端到端售前接待 | T3 工作流+脚本 | [README](workflows/presale-guide-flow/README.md) |
+| 订单/物流自动查询 | 单号识别 → 轨迹解析 → 回复成稿 → 待主动介入清单 | T3 工作流+脚本 | [README](workflows/order-logistics-query-flow/README.md) |
+| 售后工单分流与安抚 | 升级拦截 → 情绪分级 → 三层路由 → 安抚话术 → 台账 | T3 工作流+脚本 | [README](workflows/aftersale-ticket-route-flow/README.md) |
+| 夜间值守+次日汇总 | 深夜自助应答 + 敏感消息留晨间 + 8:30 晨报（实跑自助应答率 85.7%） | T3 工作流+脚本 | [README](workflows/night-duty-summary-flow/README.md) |
+| 差评预警联动 | 差评定因定级（S1 电话/S2 话术/S3 24h），预警推送店主 | T3 工作流+脚本 | [README](workflows/negative-review-alert-flow/README.md) |
 
 ---
 
