@@ -7,7 +7,7 @@
 
 ![输出预览](docs/assets/run-terminal.png)
 
-🎬 **[▶ 观看演示视频](docs/assets/demo.mp4)** — 四幕创作叙事：业务钩子 → 真实执行 → 要点到成稿演变 → 交付物
+🎬 **[▶ 观看演示视频（在线播放）](https://cdn.jsdelivr.net/gh/bangwozuo/shop-support-zh@main/skills/price-negotiation-script/docs/assets/demo.mp4) · [GitHub 页](https://github.com/bangwozuo/shop-support-zh/blob/main/skills/price-negotiation-script/docs/assets/demo.mp4)** — 四幕创作叙事：业务钩子 → 真实执行 → 要点到成稿演变 → 交付物
 
 *上图来自输出预览 · 实跑产物：把 `prompt.txt` 全量作为系统提示词，对真实输入「隔壁家同款才 159，便宜点我马上拍」的应答结果——判定比价型 + 压价型，成交 174 元 > 底线 150 元 ✅，一线自主未超额。*
 

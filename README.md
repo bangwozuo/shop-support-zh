@@ -9,9 +9,9 @@
 
 ---
 
-![演示](docs/assets/hero.gif)
+![演示](https://cdn.jsdelivr.net/gh/bangwozuo/shop-support-zh@main/docs/assets/hero.gif)
 
-*▲ 实时演示（自动循环）· [▶ 观看完整版合集视频](docs/demo.mp4)*
+*▲ 实时演示（自动循环）· [▶ 观看完整版合集视频](https://cdn.jsdelivr.net/gh/bangwozuo/shop-support-zh@main/docs/demo.mp4)*
 
 *上方录屏来自本仓 5 个代表资产的真实执行 / 实跑产物截图（商品知识库问答 → 情绪识别安抚 → 售后工单分流与安抚 → 差评预警联动 → 夜间值守晨报），每帧 4 秒；单资产完整截图见各资产 `docs/assets/run-terminal.png`。*
 
