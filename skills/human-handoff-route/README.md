@@ -7,7 +7,9 @@
 
 ![真实执行](docs/assets/run-terminal.png)
 
-🎬 **[▶ 观看演示视频（在线播放）](https://cdn.jsdelivr.net/gh/bangwozuo/shop-support-zh@main/skills/human-handoff-route/docs/assets/demo.mp4) · [GitHub 页](https://github.com/bangwozuo/shop-support-zh/blob/main/skills/human-handoff-route/docs/assets/demo.mp4)** — 四幕创作叙事：业务钩子 → 真实执行 → 要点到成稿演变 → 交付物
+![演示](https://cdn.jsdelivr.net/gh/bangwozuo/shop-support-zh@main/skills/human-handoff-route/docs/assets/demo.gif)
+
+🎬 **[▶ 观看高清完整版（mp4）](https://cdn.jsdelivr.net/gh/bangwozuo/shop-support-zh@main/skills/human-handoff-route/docs/assets/demo.mp4)** — 四幕创作叙事：业务钩子 → 真实执行 → 要点到成稿演变 → 交付物
 
 *上图来自真实执行：`python scripts/handoff_route.py --demo`，10 条会话一次分流——一线自助 5 / 二线人工 2 / 三线主管 3，人工介入占比 50.0%，2 条命中升级信号，产物落盘 Excel + PNG + JSON。*
 

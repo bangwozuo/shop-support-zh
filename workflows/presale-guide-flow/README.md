@@ -7,7 +7,9 @@
 
 ![真实执行](docs/assets/run-terminal.png)
 
-🎬 **[▶ 观看演示视频（在线播放）](https://cdn.jsdelivr.net/gh/bangwozuo/shop-support-zh@main/workflows/presale-guide-flow/docs/assets/demo.mp4) · [GitHub 页](https://github.com/bangwozuo/shop-support-zh/blob/main/workflows/presale-guide-flow/docs/assets/demo.mp4)** — 四幕创作叙事：业务钩子 → 真实执行 → 要点到成稿演变 → 交付物
+![演示](https://cdn.jsdelivr.net/gh/bangwozuo/shop-support-zh@main/workflows/presale-guide-flow/docs/assets/demo.gif)
+
+🎬 **[▶ 观看高清完整版（mp4）](https://cdn.jsdelivr.net/gh/bangwozuo/shop-support-zh@main/workflows/presale-guide-flow/docs/assets/demo.mp4)** — 四幕创作叙事：业务钩子 → 真实执行 → 要点到成稿演变 → 交付物
 
 *上图来自真实执行：`python scripts/run_flow.py --demo`，6 条买家咨询一次跑完——知识命中 4 / 缺口 2（命中率 66.7%），议价 2 条已配让步档位，产物落盘导购台账 Excel + 报告 MD + JSON。*
 

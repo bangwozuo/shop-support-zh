@@ -7,7 +7,9 @@
 
 ![真实执行](docs/assets/run-terminal.png)
 
-🎬 **[▶ 观看演示视频（在线播放）](https://cdn.jsdelivr.net/gh/bangwozuo/shop-support-zh@main/workflows/aftersale-ticket-route-flow/docs/assets/demo.mp4) · [GitHub 页](https://github.com/bangwozuo/shop-support-zh/blob/main/workflows/aftersale-ticket-route-flow/docs/assets/demo.mp4)** — 四幕检测叙事：业务钩子 → 真实执行 → 检查项逐条亮灯 → 交付物
+![演示](https://cdn.jsdelivr.net/gh/bangwozuo/shop-support-zh@main/workflows/aftersale-ticket-route-flow/docs/assets/demo.gif)
+
+🎬 **[▶ 观看高清完整版（mp4）](https://cdn.jsdelivr.net/gh/bangwozuo/shop-support-zh@main/workflows/aftersale-ticket-route-flow/docs/assets/demo.mp4)** — 四幕检测叙事：业务钩子 → 真实执行 → 检查项逐条亮灯 → 交付物
 
 *上图来自真实执行：`python scripts/run_flow.py --demo`，7 条售后会话一次跑完——升级转主管 2 / 可自动安抚 5 / 内容缺失 0，产物落盘台账 Excel + 话术清单 MD + JSON。*
 

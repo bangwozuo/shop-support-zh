@@ -7,7 +7,9 @@
 
 ![输出预览](docs/assets/run-terminal.png)
 
-🎬 **[▶ 观看演示视频（在线播放）](https://cdn.jsdelivr.net/gh/bangwozuo/shop-support-zh@main/skills/return-policy-respond/docs/assets/demo.mp4) · [GitHub 页](https://github.com/bangwozuo/shop-support-zh/blob/main/skills/return-policy-respond/docs/assets/demo.mp4)** — 四幕创作叙事：业务钩子 → 真实执行 → 要点到成稿演变 → 交付物
+![演示](https://cdn.jsdelivr.net/gh/bangwozuo/shop-support-zh@main/skills/return-policy-respond/docs/assets/demo.gif)
+
+🎬 **[▶ 观看高清完整版（mp4）](https://cdn.jsdelivr.net/gh/bangwozuo/shop-support-zh@main/skills/return-policy-respond/docs/assets/demo.mp4)** — 四幕创作叙事：业务钩子 → 真实执行 → 要点到成稿演变 → 交付物
 
 *上图来自输出预览 · 实跑产物：把 `prompt.txt` 全量作为系统提示词，对真实输入「保温杯杯盖有划痕，想退货，运费谁出？」的应答结果——判定质量问题且在 7 天内，**来回运费由店铺承担**，24 小时内审核、1–3 个工作日到账。*
 
